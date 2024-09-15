@@ -1,10 +1,10 @@
 #include <Arduino.h>
 
 // put function declarations here:
-int PIRpin = 4; // PIR Digital input pin
-int LDRDigi = 16; // LDR Digital input pin
-int LDRAnalog = 32; // LDR Analog input pin
-int BUZZpin = 18; // Buzzer Digital output pin
+int PIRpin = D2; // PIR Digital input pin
+int LDRDigi = D6; // LDR Digital input pin
+int LDRAnalog = A0; // LDR Analog input pin
+int BUZZpin = D5; // Buzzer Digital output pin
 const float gama = 0.7; // LDR gamma value
 const float rl10 = 50; // LDR Resistance when lux value is 10
 
@@ -19,7 +19,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  delay(500); // 500 ms delay before each sensor read
+  delay(1000); // 1000 ms delay before each sensor read
 
   int LDRvalue = analogRead(LDRAnalog); // Read voltage values from LDRAnalog pin
   int pirState = digitalRead(PIRpin); // Read PIRpin state
@@ -54,7 +54,7 @@ void loop() {
     Serial.println("No Motion");
   }
 
-  if (LDRdigital == 0 && pirState == HIGH)
+  if (LDRdigital == 1 && pirState == HIGH)
   {
     digitalWrite(BUZZpin, HIGH);
     Serial.println("Buzz");
