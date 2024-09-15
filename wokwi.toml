@@ -1,0 +1,5 @@
+[wokwi]
+version = 1
+firmware = '.pio\build\d1_mini\firmware.bin'
+elf = '.pio\build\d1_mini\firmware.elf'
+rfc2217ServerPort = 4000
