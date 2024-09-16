@@ -1,12 +1,19 @@
 #include <Arduino.h>
+#include <NewPing.h>
+#include <Ultrasonic.h>
 
 // put function declarations here:
 int PIRpin = D2; // PIR Digital input pin
 int LDRDigi = D6; // LDR Digital input pin
 int LDRAnalog = A0; // LDR Analog input pin
-int BUZZpin = D5; // Buzzer Digital output pin
+int BUZZpin = D3; // Buzzer Digital output pin
 const float gama = 0.7; // LDR gamma value
 const float rl10 = 50; // LDR Resistance when lux value is 10
+#define MAX_DISTANCE 200
+int trig = D4;
+int echo = D5;
+Ultrasonic ultrasonic(trig, echo);
+int sonarcm;
 
 void setup() {
   // put your setup code here, to run once:
@@ -14,6 +21,7 @@ void setup() {
   pinMode(LDRDigi, INPUT); // Declare LDRDigi as input
   pinMode(LDRAnalog, INPUT); // Declare LDRAnalog as input
   pinMode(BUZZpin, OUTPUT); // Declare BUZZpin as output
+
 
 }
 
@@ -56,13 +64,20 @@ void loop() {
 
   if (LDRdigital == 1 && pirState == HIGH)
   {
-    digitalWrite(BUZZpin, HIGH);
+    digitalWrite(BUZZpin, LOW);
     Serial.println("Buzz");
   }
   else {
-    digitalWrite(BUZZpin, LOW);
+    digitalWrite(BUZZpin, HIGH);
   }
   
+  int sonarcm = ultrasonic.read();
+  Serial.print(sonarcm);
+  Serial.println(" cm");
+
+  
+
+
   
 }
 
