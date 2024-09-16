@@ -12,7 +12,7 @@ const float rl10 = 50; // LDR Resistance when lux value is 10
 #define MAX_DISTANCE 200
 int trig = D4;
 int echo = D5;
-Ultrasonic ultrasonic(trig, echo);
+Ultrasonic ultrasonic(trig, echo, 10000UL);
 int sonarcm;
 
 void setup() {
